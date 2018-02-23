@@ -4,14 +4,16 @@ import TagsSelector from '../../selectors/selector_tags';
 import { fetchTags } from '../../actions/tagsActions';
 import PropTypes from 'prop-types';
 import React from 'react';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { List } from 'immutable';
 
 const propTypes = {
-  tagActions: PropTypes.object,
-  tags: PropTypes.array
+  fetchTags: PropTypes.func.isRequired,
+  tags: ImmutablePropTypes.list,
 };
 
 const defaultProps = {
-  tags: [],
+  tags: List([]),
 };
 
 class Tags extends React.Component {
@@ -20,19 +22,21 @@ class Tags extends React.Component {
   }
 
   renderData() {
-    return <div>{this.props.tags.map(a => a.name )}</div>;
+    return <div>
+      {this.props.tags.map(a => a.get('name') )}
+    </div>;
   }
 
   render() {
     return (
       <div className="">
-          {this.props.tags.length > 0 ?
+        {this.props.tags.size > 0 ?
             this.renderData()
             :
             <div className="">
               No Data
             </div>
-          }
+        }
       </div>
     );
   }
@@ -42,7 +46,6 @@ Tags.propTypes = propTypes;
 Tags.defaultProps = defaultProps;
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     tags: TagsSelector(state),
   };

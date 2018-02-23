@@ -1,11 +1,12 @@
 import mapKeys from 'lodash.mapkeys';
+import { List, Map } from 'immutable';
 
 import { LIST_TAGS } from '../actions';
 
-export default function tags(state = {}, action) {
+export default function tags(state = Map({}), action) {
   switch (action.type) {
     case LIST_TAGS:
-      return mapKeys(action.tags, 'id');
+      return state.merge(mapKeys(action.tags, 'id'));
     default:
       return state;
   };

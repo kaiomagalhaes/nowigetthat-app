@@ -1,4 +1,5 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux-immutable';
+import { Map } from 'immutable';
 import tagsReducer from './tagsReducer';
 
 const rootReducer = combineReducers({
