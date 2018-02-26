@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import { List } from 'immutable';
 
-const selector = (state) => state.get('tags');
+const selector = state => state.get('tags');
 const list = results => List(results.toArray());
 
 export default createSelector(

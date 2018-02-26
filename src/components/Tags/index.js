@@ -1,11 +1,11 @@
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import TagsSelector from '../../selectors/selector_tags';
-import { fetchTags } from '../../actions/tagsActions';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { List } from 'immutable';
+import TagsSelector from '../../selectors/selector_tags';
+import { fetchTags } from '../../actions/tagsActions';
 
 const propTypes = {
   fetchTags: PropTypes.func.isRequired,
@@ -22,9 +22,11 @@ class Tags extends React.Component {
   }
 
   renderData() {
-    return <div>
-      {this.props.tags.map(a => a.get('name') )}
-    </div>;
+    return (
+      <div>
+        {this.props.tags.map(a => a.get('name'))}
+      </div>
+    );
   }
 
   render() {
@@ -53,11 +55,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchTags: bindActionCreators(fetchTags, dispatch)
+    fetchTags: bindActionCreators(fetchTags, dispatch),
   };
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Tags);
