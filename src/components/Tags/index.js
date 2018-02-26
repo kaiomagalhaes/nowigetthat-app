@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { List } from 'immutable';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { List } from 'immutable';
+import { Collection, CollectionItem } from 'react-materialize';
 import TagsSelector from '../../selectors/selector_tags';
 import { fetchTags } from '../../actions/tagsActions';
 
@@ -21,24 +22,26 @@ class Tags extends React.Component {
     this.props.fetchTags();
   }
 
-  renderData() {
+  renderTagsItems() {
+    return this.props.tags.map(tag => (
+      <CollectionItem>
+        {tag.get('name')}
+      </CollectionItem>
+    ));
+  }
+
+  renderTagsList() {
     return (
-      <div>
-        {this.props.tags.map(a => a.get('name'))}
-      </div>
+      <Collection>
+        {this.renderTagsItems()}
+      </Collection>
     );
   }
 
   render() {
     return (
       <div className="">
-        {this.props.tags.size > 0 ?
-            this.renderData()
-            :
-            <div className="">
-              No Data
-            </div>
-        }
+        {this.renderTagsList()}
       </div>
     );
   }
