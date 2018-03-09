@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Collection, CollectionItem } from 'react-materialize';
 import TagsSelector from '../../selectors/selector_tags';
-import { fetchTags } from '../../actions/tagsActions';
+import { fetchTags } from '../../actions';
 
 const propTypes = {
   fetchTags: PropTypes.func.isRequired,

@@ -1,8 +1,8 @@
 import React from 'react';
-import Tags from './components/Tags';
+import KnowledgePieces from './components/KnowledgePieces';
 
 export default () => (
   <div>
-    <Tags />
+    <KnowledgePieces />
   </div>
 );
